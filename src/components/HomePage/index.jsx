@@ -1,18 +1,23 @@
 ﻿import React, { Component } from "react";
-import Styled from "styled-components";
 import { Link } from "react-router-dom";
 import { getOwnUserInfo } from "api";
+import PageContainer from "../common/PageContainer";
 import Avatar from "./avatar";
 import Intro from "./intro";
 import Navbar from "./navbar";
+import Footer from './footer';
 import { SOCIAL_LIST } from "config";
 
-const HomePage = Styled.div`
+const HomePage = PageContainer.extend`
   height: 100vh;
   display: flex;
   flex-direction:column;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: 500px) {
+    padding: 25px 30px;
+  }
 `;
 
 const Navs = (() => {
@@ -37,7 +42,7 @@ export default class extends Component {
     nickname: "",
     desc: ""
   };
-  async componentDidMount() {
+  async componentWillMount() {
     const res = await getOwnUserInfo();
     const { avatar_url, login, bio } = res;
     this.setState({ avatar_url, nickname: login, desc: bio });
@@ -51,6 +56,7 @@ export default class extends Component {
           <Intro.Desc>{this.state.desc}</Intro.Desc>
         </Intro>
         <Navbar>{Navs}</Navbar>
+        <Footer>© 2018 {this.state.nickname}</Footer>
       </HomePage>
     );
   }

@@ -6,13 +6,15 @@ const Intro = Styled.div`
 `;
 
 Intro.Nickname = Styled.h1`
+    margin: 0;
     padding: 4px 0;
     font-size: 20px;
 `;
 
 Intro.Desc = Styled.p`
-    padding: 4px 16px;
-    color: #9C9C9C;
+    margin: 0;
+    padding: 4px 0;
+    color: #999999;
     font-size: 16px;
 `;
 

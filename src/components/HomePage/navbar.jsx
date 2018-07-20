@@ -1,8 +1,8 @@
 ﻿import Styled from "styled-components";
 
 const Navbar = Styled.ul`
+    padding: 0;
     margin-top: 16px;
-    padding: 0 16px;
     list-style: none;
     display: flex;
     flex-wrap: wrap;
@@ -14,13 +14,6 @@ Navbar.NavItem = Styled.li`
 
     > a {
         font-size: 14px;
-        color: #2DB4D8;
-        text-decoration: none;
-        transition: color .3s;
-
-        &:hover {
-            color: #22BAD9;
-        }
     }
 `;
 
