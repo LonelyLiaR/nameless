@@ -41,6 +41,10 @@ injectGlobal`
   a:hover {
     color: #22BAD9;
   }
+
+  #app {
+    min-height: 100vh;
+  }
 `;
 
 document.title = BLOG_TITLE;

@@ -40,7 +40,7 @@ const Rects = () => {
 const ArchivesLoader = () => (
   <ContentLoader
     width={clientWidth}
-    height={clientHeight}
+    height={clientHeight - (clientWidth <= 500 ? 50 : 100)}
     speed={1}
     preserveAspectRatio="none"
     primaryColor={"#f3f3f3"}
@@ -49,7 +49,5 @@ const ArchivesLoader = () => (
     <Rects />
   </ContentLoader>
 );
-
-// <rect x="0" y="2" width="45px" height="4px" />
 
 export default ArchivesLoader;

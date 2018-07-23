@@ -1,7 +1,7 @@
 ﻿import React, { Component } from "react";
 import { getArchives } from "api";
 import dateFormatter from "assets/utils/dateFormatter";
-import ArchivesLoader from "./archives-loader";
+import ArchivesLoader from "./loader";
 import ArchivesPage from "../common/PageContainer";
 import Archive from "./archive";
 import { USERNAME } from "config";
