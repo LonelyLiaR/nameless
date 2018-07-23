@@ -47,7 +47,7 @@ export default class extends Component {
   async componentWillMount() {
     const res = await getOwnUserInfo();
     const { avatar_url, login, bio } = res;
-    this.setState({ avatar_url, nickname: login, desc: bio });
+    this.setState({ avatar_url, nickname: login, desc: bio, loaded: true });
   }
   render() {
     return (
