@@ -7,9 +7,11 @@ import Avatar from "./avatar";
 import Intro from "./intro";
 import Navbar from "./navbar";
 import Footer from "./footer";
-import { SOCIAL_LIST } from "config";
+import { SOCIAL_LIST, BLOG_TITLE } from "config";
 
 const HomePage = PageContainer.extend`
+  padding-top: 0;
+  padding-bottom: 0;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -17,7 +19,7 @@ const HomePage = PageContainer.extend`
   align-items: center;
 
   @media (max-width: 500px) {
-    padding: 25px 30px;
+    padding: 0 30px;
   }
 `;
 
@@ -47,6 +49,7 @@ export default class extends Component {
   async componentWillMount() {
     const res = await getOwnUserInfo();
     const { avatar_url, login, bio } = res;
+    document.title = BLOG_TITLE;
     this.setState({ avatar_url, nickname: login, desc: bio, loaded: true });
   }
   render() {

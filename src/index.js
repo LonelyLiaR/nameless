@@ -47,8 +47,6 @@ injectGlobal`
   }
 `;
 
-document.title = BLOG_TITLE;
-
 render(
   <HashRouter>
     <App />
