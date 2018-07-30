@@ -4,7 +4,6 @@ import { HashRouter } from "react-router-dom";
 import { injectGlobal } from "styled-components";
 import registerServiceWorker from "./registerServiceWorker";
 import App from "./App";
-import { BLOG_TITLE } from "./config";
 import "primer-markdown/build/build.css";
 
 injectGlobal`

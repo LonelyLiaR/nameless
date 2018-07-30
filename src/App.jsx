@@ -11,8 +11,8 @@ class App extends Component {
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route exact path="/archives" component={ArchivesPage} />
-        <Route path="/p/:number" component={PostPage} />
-        <Route path="/error" component={ErrorPage} />
+        <Route exact path="/p/:number" component={PostPage} />
+        <Route exact path="/error" component={ErrorPage} />
         <Redirect from="/*" to="/error" />
       </Switch>
     );
