@@ -2,6 +2,7 @@
 import Styled from "styled-components";
 import { Link } from "react-router-dom";
 import PageContainer from "../common/PageContainer";
+import PageTitle from "../common/PageTitle";
 import { ERROR_MESSAGE } from "config";
 
 const ErrorPage = PageContainer.extend`
@@ -25,12 +26,10 @@ const ErrorMessage = Styled.p`
 `;
 
 export default class extends Component {
-  componentDidMount() {
-    document.title = "Error";
-  }
   render() {
     return (
       <ErrorPage>
+        <PageTitle>Error</PageTitle>
         <ErrorMessage>{ERROR_MESSAGE}</ErrorMessage>
         <Link to="/">Back</Link>
       </ErrorPage>

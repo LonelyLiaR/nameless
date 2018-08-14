@@ -2,12 +2,13 @@
 import { Link } from "react-router-dom";
 import { getOwnUserInfo } from "api";
 import PageContainer from "../common/PageContainer";
+import PageTitle from "../common/PageTitle";
 import HomeLoader from "./loader";
 import Avatar from "./avatar";
 import Intro from "./intro";
 import Navbar from "./navbar";
 import Footer from "./footer";
-import { SOCIAL_LIST, BLOG_TITLE } from "config";
+import { SOCIAL_LIST } from "config";
 
 const HomePage = PageContainer.extend`
   padding-top: 0;
@@ -49,7 +50,6 @@ export default class extends Component {
   async componentWillMount() {
     const res = await getOwnUserInfo();
     const { avatar_url, login, bio } = res;
-    document.title = BLOG_TITLE;
     this.setState({ avatar_url, nickname: login, desc: bio, loaded: true });
   }
   render() {
@@ -57,6 +57,7 @@ export default class extends Component {
       <HomePage>
         {this.state.loaded ? (
           <Fragment>
+            <PageTitle />
             <Avatar src={this.state.avatar_url} />
             <Intro>
               <Intro.Nickname>{this.state.nickname}</Intro.Nickname>

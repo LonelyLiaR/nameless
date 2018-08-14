@@ -2,11 +2,11 @@
 import { getPost, markdownParser } from "api";
 import dateFormatter from "assets/utils/dateFormatter";
 import PageContainer from "../common/PageContainer";
+import PageTitle from "../common/PageTitle";
 import PostLoader from "./loader";
 import Post from "./post";
 import PostHeader from "./post-header";
 import PostBody from "./post-body";
-import { BLOG_TITLE } from "config";
 
 const PostPage = PageContainer.extend`
   padding-bottom: 75px;
@@ -24,7 +24,7 @@ export default class extends Component {
     html_url: "",
     loaded: false
   };
-  async componentWillMount() {
+  async componentDidMount() {
     const { history, match } = this.props;
     const { number } = match.params;
     const res = await getPost(number);
@@ -33,10 +33,9 @@ export default class extends Component {
       return false;
     } else {
       const { title, created_at, html_url } = res;
-      document.title = `${title.trim()} - ${BLOG_TITLE}`;
       const body =
         (await markdownParser(res.body)) +
-        `<p style="padding-top:15px; margin-top: 35px; border-top: 1px solid #E8E8E8;">原文地址: <a href="${html_url}">${html_url}</a></p>`;
+        `<p style="padding-top:15px; margin-top: 85px; border-top: 1px solid #E8E8E8;">原文地址: <a href="${html_url}">${html_url}</a></p>`;
       this.setState({ title, created_at, body, loaded: true });
     }
   }
@@ -47,7 +46,9 @@ export default class extends Component {
           {this.state.loaded ? (
             <Fragment>
               <PostHeader>
-                <PostHeader.Title>{this.state.title.trim()}</PostHeader.Title>
+                <PageTitle>
+                  <PostHeader.Title>{this.state.title.trim()}</PostHeader.Title>
+                </PageTitle>
                 <PostHeader.Date>
                   {dateFormatter(this.state.created_at)}
                 </PostHeader.Date>

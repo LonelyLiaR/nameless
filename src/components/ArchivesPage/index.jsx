@@ -1,17 +1,18 @@
 ﻿import React, { Component } from "react";
 import { getArchives } from "api";
 import dateFormatter from "assets/utils/dateFormatter";
+import PageTitle from "../common/PageTitle";
 import ArchivesLoader from "./loader";
 import ArchivesPage from "../common/PageContainer";
 import Archive from "./archive";
-import { USERNAME } from "config";
+import { USERNAME, BLOG_TITLE } from "config";
 
 export default class extends Component {
   state = {
     archives: [],
     loaded: false
   };
-  async componentWillMount() {
+  async componentDidMount() {
     const res = await getArchives();
     const archives = !!res.length
       ? res
@@ -35,6 +36,7 @@ export default class extends Component {
     );
     return (
       <ArchivesPage>
+        <PageTitle>Archives</PageTitle>
         {this.state.loaded ? (
           !!Archives.length ? (
             Archives
