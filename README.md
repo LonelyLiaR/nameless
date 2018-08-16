@@ -18,7 +18,7 @@ First create a new GitHub repo. Assume that repo name is `blog`.
 This repo Issues is where the articles are stored.
 Of course you can also store the generated blog files here, so you can visit the blog by visit the repo's GitHub Page.
 
-The ~after star Nameless~, run:
+Then ~after star Nameless,~ run:
 ```shell
 # clone Nameless.
 git clone https://github.com/LonelyLiaR/nameless
