@@ -15,7 +15,7 @@ Nameless is a Blog-System based on **React** and **GitHub Issues**. Simple and G
 
 ## Getting Started
 First create a new GitHub repo. Assume that repo name is `blog`.
-This repo Issues is where the articles are stored.
+This repo Issues is where the posts are stored.
 Of course you can also store the generated blog files here, so you can visit the blog by visit the repo's GitHub Page.
 
 Then ~after star Nameless,~ run:
@@ -37,7 +37,7 @@ Then open the config file `nameless/src/config.json`.
 {
   "BLOG_TITLE": "This is Blog's title",
   "USERNAME": "Enter your GitHub username in this place",
-  "REPO": "Enter the articles store repo name, default USERNAME.github.io",
+  "REPO": "Enter the posts store repo name, default USERNAME.github.io",
   "SOCIAL_LIST": {
     "Social name": "url"
   },
