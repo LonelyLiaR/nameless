@@ -66,4 +66,4 @@ Welcome to
 　
 　
 
-**The last thing, I hope you like Nameless**.
+**Hope you like Nameless**.
