@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
-import HomePage from "./components/HomePage";
-import ArchivesPage from "./components/ArchivesPage";
-import PostPage from "./components/PostPage";
-import ErrorPage from "./components/ErrorPage";
+import AsyncComponent from "./components/common/AsyncComponent";
+
+const HomePage = AsyncComponent(() => import("./components/HomePage"));
+const ArchivesPage = AsyncComponent(() => import("./components/ArchivesPage"));
+const PostPage = AsyncComponent(() => import("./components/PostPage"));
+const ErrorPage = AsyncComponent(() => import("./components/ErrorPage"));
 
 class App extends Component {
   render() {
