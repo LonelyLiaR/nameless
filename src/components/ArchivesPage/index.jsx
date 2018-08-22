@@ -1,11 +1,11 @@
 ﻿import React, { Component } from "react";
 import { getArchives } from "api";
 import dateFormatter from "assets/utils/dateFormatter";
-import PageTitle from "../common/PageTitle";
 import ArchivesLoader from "./loader";
 import ArchivesPage from "../common/PageContainer";
+import PageTitle from "../common/PageTitle";
 import Archive from "./archive";
-import { USERNAME, BLOG_TITLE } from "config";
+import { USERNAME } from "config";
  
 export default class extends Component {
   state = {

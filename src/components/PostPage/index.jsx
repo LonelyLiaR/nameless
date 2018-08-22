@@ -32,10 +32,8 @@ export default class extends Component {
       history.replace("/error");
       return false;
     } else {
-      const { title, created_at, html_url } = res;
-      const body =
-        (await markdownParser(res.body)) +
-        `<p style="padding-top:15px; margin-top: 85px; border-top: 1px solid #E8E8E8;">原文地址: <a href="${html_url}">${html_url}</a></p>`;
+      const { title, created_at } = res;
+      const body = await markdownParser(res.body);
       this.setState({ title, created_at, body, loaded: true });
     }
   }

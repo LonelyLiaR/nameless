@@ -1,9 +1,7 @@
 ﻿import Styled from "styled-components";
 
 const PostHeader = Styled.div`
-    padding-bottom: 15px;
-    margin-bottom: 35px;
-    border-bottom: 1px solid #E8E8E8;
+    margin-bottom: 55px;
 `;
 
 PostHeader.Title = Styled.h2`
