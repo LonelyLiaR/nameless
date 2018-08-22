@@ -72,4 +72,4 @@ Welcome to
 　
 　
 
-**Hope you like Nameless**.
+**Now please, enjoy the Nameless, and hope you like it.**
