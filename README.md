@@ -18,7 +18,7 @@ Nameless is a Blog-System based on **React** and **GitHub Issues**. Simple and G
 - You can manage posts in Issues directly, easy and low cost. (But you cant delete post, can just hidden post. (Close issues))
 - Commenting system.
 
-
+　
 ## Getting Started
 First create a new GitHub repo. Assume that repo name is `blog`.
 This repo Issues is where the posts are stored.
@@ -60,16 +60,18 @@ yarn start
 
 And you can visit the blog in `http://localhost:3000/#/`.
 
+　
 ## Scripts
 - `npm run build` or `yarn build` Generate blog files, the `build` folder's contents is the deploy website.
 - `git pull` Update Nameless. You need to re-generate blog files and re-deploy it.
 
+　
 ## Contributing
 Welcome to
 - Pull requests.
 - Open issues.
 
 　
+ 
 　
-
 **Now please, enjoy the Nameless, and hope you like it.**
