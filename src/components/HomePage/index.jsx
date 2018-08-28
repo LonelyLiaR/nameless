@@ -8,7 +8,7 @@ import Avatar from "./avatar";
 import Intro from "./intro";
 import Navbar from "./navbar";
 import Footer from "./footer";
-import { SOCIAL_LIST } from "config";
+import { SOCIAL_LIST, ARCHIVES_TITLE, Labels_TITLE } from "config";
 
 const HomePage = PageContainer.extend`
   padding-top: 0;
@@ -26,8 +26,11 @@ const HomePage = PageContainer.extend`
 
 const Navs = (() => {
   const navs = [
-    <Navbar.NavItem key="Blog">
-      <Link to="/archives">Blog</Link>
+    <Navbar.NavItem key="Archives">
+      <Link to="/archives">{!!ARCHIVES_TITLE ? ARCHIVES_TITLE : "Archives"}</Link>
+    </Navbar.NavItem>,
+    <Navbar.NavItem key="Labels">
+      <Link to="/labels">{!!Labels_TITLE ? Labels_TITLE : "Labels"}</Link>
     </Navbar.NavItem>
   ];
   for (let navTitle in SOCIAL_LIST) {
@@ -55,9 +58,9 @@ export default class extends Component {
   render() {
     return (
       <HomePage>
+        <PageTitle />
         {this.state.loaded ? (
           <Fragment>
-            <PageTitle />
             <Avatar src={this.state.avatar_url} />
             <Intro>
               <Intro.Nickname>{this.state.nickname}</Intro.Nickname>

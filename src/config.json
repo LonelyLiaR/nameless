@@ -9,5 +9,7 @@
     "CloudMusic": "http://music.163.com/#/user/home?id=64860394",
     "WeiBo": "https://weibo.com/lonelyliar8523"
   },
+  "DATE_FORMAT": "MMMM DD, YYYY",
+  "EMPTY_MESSAGE": "Today is ${DATETIME}, you have zero post.",
   "ERROR_MESSAGE": "Sorry, the page you are looking for could not be found."
 }
