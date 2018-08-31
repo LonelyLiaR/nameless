@@ -3,7 +3,7 @@ import ContentLoader from "react-content-loader";
 
 const { clientWidth, clientHeight } = document.documentElement || document.body;
 
-const Rects = () => (
+const Loader = () => (
   <Fragment>
     <rect
       x={clientWidth / 2 - 72}
@@ -27,7 +27,7 @@ const HomeLoader = () => (
     primaryColor={"#f3f3f3"}
     secondaryColor={"#ecebeb"}
   >
-    <Rects />
+    <Loader />
   </ContentLoader>
 );
 

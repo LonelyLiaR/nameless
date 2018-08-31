@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 import { getOwnUserInfo } from "api";
 import PageContainer from "../common/PageContainer";
 import PageTitle from "../common/PageTitle";
-import HomeLoader from "./loader";
-import Avatar from "./avatar";
-import Intro from "./intro";
-import Navbar from "./navbar";
-import Footer from "./footer";
+import HomeLoader from "./Loader";
+import Avatar from "./Avatar";
+import Intro from "./Intro";
+import Navbar from "./Navbar";
+import Footer from "./Footer";
 import { SOCIAL_LIST, ARCHIVES_TITLE, Labels_TITLE } from "config";
 
 const HomePage = PageContainer.extend`

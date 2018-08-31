@@ -4,7 +4,7 @@ import ContentLoader from "react-content-loader";
 
 const { clientWidth, clientHeight } = document.documentElement || document.body;
 
-const Rects = () => {
+const Loader = () => {
   return (
     <Fragment>
       <rect x="0" y="14" width="256" height="28" />
@@ -25,12 +25,12 @@ const Rects = () => {
   );
 };
 
-const Loader = Styled(ContentLoader)`
+const Content = Styled(ContentLoader)`
   min-height: calc(100vh - 160px);
 `;
 
 const ArchivesLoader = () => (
-  <Loader
+  <Content
     width={clientWidth}
     height={clientHeight - (clientWidth <= 500 ? 50 : 100)}
     speed={1}
@@ -38,8 +38,8 @@ const ArchivesLoader = () => (
     primaryColor={"#f3f3f3"}
     secondaryColor={"#ecebeb"}
   >
-    <Rects />
-  </Loader>
+    <Loader />
+  </Content>
 );
 
 export default ArchivesLoader;

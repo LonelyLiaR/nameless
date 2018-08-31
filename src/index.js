@@ -1,11 +1,11 @@
 import React from "react";
 import { render } from "react-dom";
 import { Provider } from "react-redux";
-import Store from "./store";
 import { HashRouter } from "react-router-dom";
 import { injectGlobal } from "styled-components";
-import registerServiceWorker from "./registerServiceWorker";
+import Store from "./store";
 import App from "./App";
+import registerServiceWorker from "./registerServiceWorker";
 import { BLOG_TITLE } from "config";
 import "primer-markdown/build/build.css";
 

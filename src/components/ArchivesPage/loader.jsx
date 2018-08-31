@@ -3,7 +3,7 @@ import ContentLoader from "react-content-loader";
 
 const { clientWidth, clientHeight } = document.documentElement || document.body;
 
-const Rects = () => {
+const Loader = () => {
   if (clientWidth <= 500) {
     return (
       <Fragment>
@@ -46,7 +46,7 @@ const ArchivesLoader = () => (
     primaryColor={"#f3f3f3"}
     secondaryColor={"#ecebeb"}
   >
-    <Rects />
+    <Loader />
   </ContentLoader>
 );
 

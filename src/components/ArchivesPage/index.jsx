@@ -2,10 +2,10 @@
 import { connect } from "react-redux";
 import moment from "moment";
 import { getArchives } from "api";
-import ArchivesLoader from "./loader";
+import ArchivesLoader from "./Loader";
 import ArchivesPage from "../common/PageContainer";
 import PageTitle from "../common/PageTitle";
-import Archive from "./archive";
+import Archive from "./Archive";
 import { USERNAME, ARCHIVES_TITLE, DATE_FORMAT, EMPTY_MESSAGE } from "config";
 
 const todayDate = moment().format(
@@ -65,7 +65,7 @@ export default connect(
             !!Archives.length ? (
               Archives
             ) : !!EMPTY_MESSAGE ? (
-              EMPTY_MESSAGE.replace("${DATETIME}", todayDate)
+              EMPTY_MESSAGE.replace("$_DATETIME_", todayDate)
             ) : (
               `Today is ${todayDate}, and this place is so empty.`
             )

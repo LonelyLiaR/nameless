@@ -2,10 +2,10 @@
 import { connect } from "react-redux";
 import moment from "moment";
 import { getArchives } from "api";
-import LabelsLoader from "./loader";
+import LabelsLoader from "./Loader";
 import PageContainer from "../common/PageContainer";
 import PageTitle from "../common/PageTitle";
-import Label from "./label";
+import Label from "./Label";
 import { USERNAME, LABELS_TITLE, EMPTY_MESSAGE, DATE_FORMAT } from "config";
 
 const LabelsPage = PageContainer.extend`
@@ -17,7 +17,7 @@ const todayDate = moment().format(
   !!DATE_FORMAT ? DATE_FORMAT : "MMMM DD, YYYY"
 );
 
-const $NULL = Symbol("$NULL");
+const $_NULL_ = Symbol("$_NULL_");
 
 export default connect(
   ({ postArchives }) => ({
@@ -51,7 +51,7 @@ export default connect(
           }
           this.props.storePosts(archives);
         }
-        labels[$NULL] = [];
+        labels[$_NULL_] = [];
         const posts = Object.values(archives);
         for (let i = 0; i < posts.length; i++) {
           const ls = posts[i].labels;
@@ -63,7 +63,7 @@ export default connect(
               labels[ls[l].name].push(posts[i]);
             }
           } else {
-            labels[$NULL].push(posts[i]);
+            labels[$_NULL_].push(posts[i]);
           }
         }
         this.props.storeLabels(labels);
@@ -79,13 +79,17 @@ export default connect(
       return (
         <LabelsPage>
           <PageTitle>{!!LABELS_TITLE ? LABELS_TITLE : "Labels"}</PageTitle>
-          {this.state.loaded
-            ? !!Object.keys(this.props.postArchives.posts).length
-              ? Labels
-              : !!EMPTY_MESSAGE
-                ? EMPTY_MESSAGE.replace("${DATETIME}", todayDate)
-                : `Today is ${todayDate}, and this place is so empty.`
-            : ""}
+          {this.state.loaded ? (
+            !!Object.keys(this.props.postArchives.posts).length ? (
+              Labels
+            ) : !!EMPTY_MESSAGE ? (
+              EMPTY_MESSAGE.replace("$_DATETIME_", todayDate)
+            ) : (
+              `Today is ${todayDate}, and this place is so empty.`
+            )
+          ) : (
+            <LabelsLoader />
+          )}
         </LabelsPage>
       );
     }

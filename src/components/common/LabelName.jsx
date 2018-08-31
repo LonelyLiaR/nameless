@@ -10,6 +10,7 @@ const LabelName = Styled.div`
         content: "";
         width: 6px;
         height: 6px;
+        margin-left: 1px;
         margin-right: 12px;
         background-color: #999999;
         border-radius: 100%;

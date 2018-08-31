@@ -4,10 +4,8 @@ import moment from "moment";
 import { getPost, markdownParser } from "api";
 import PageContainer from "../common/PageContainer";
 import PageTitle from "../common/PageTitle";
-import PostLoader from "./loader";
-import Post from "./post";
-import PostHeader from "./post-header";
-import PostBody from "./post-body";
+import PostLoader from "./Loader";
+import Post from "./Post";
 import { DATE_FORMAT } from "config";
 
 const PostPage = PageContainer.extend`
@@ -65,19 +63,19 @@ export default connect(
           <Post>
             {this.state.loaded ? (
               <Fragment>
-                <PostHeader>
+                <Post.Header>
                   <PageTitle>
-                    <PostHeader.Title>
+                    <Post.Header.Title>
                       {this.state.title.trim()}
-                    </PostHeader.Title>
+                    </Post.Header.Title>
                   </PageTitle>
-                  <PostHeader.Date>
+                  <Post.Header.Date>
                     {moment(this.state.created_at).format(
                       !!DATE_FORMAT ? DATE_FORMAT : "MMMM DD, YYYY"
                     )}
-                  </PostHeader.Date>
-                </PostHeader>
-                <PostBody
+                  </Post.Header.Date>
+                </Post.Header>
+                <Post.Body
                   className="markdown-body"
                   dangerouslySetInnerHTML={{ __html: this.state.body }}
                 />
