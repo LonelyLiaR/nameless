@@ -1,12 +1,28 @@
 ﻿import { combineReducers } from "redux";
-import { STORE_POSTS, MARK_POST } from "./actions";
+import { STORE_INFO, STORE_POSTS, MARK_POST, STORE_LABELS } from "./actions";
 
-const postArchives = (state = {}, action) => {
+const ownUserInfo = (
+  state = { avatar_url: "", nickname: "", desc: "" },
+  action
+) => {
+  switch (action.type) {
+    case STORE_INFO:
+      return Object.assign({}, state, action.info);
+    default:
+      return state;
+  }
+};
+
+const postArchives = (state = { posts: {}, labels: {} }, action) => {
   switch (action.type) {
     case STORE_POSTS:
-      return Object.assign({}, state, action.posts);
+      state.posts = action.posts;
+      return state;
     case MARK_POST:
-      state[action.number].$body = action.body;
+      state.posts[action.number].$body = action.body;
+      return state;
+    case STORE_LABELS:
+      state.labels = action.labels;
       return state;
     default:
       return state;
@@ -14,5 +30,6 @@ const postArchives = (state = {}, action) => {
 };
 
 export default combineReducers({
+  ownUserInfo,
   postArchives
 });

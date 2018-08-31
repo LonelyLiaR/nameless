@@ -10,6 +10,6 @@
     "WeiBo": "https://weibo.com/lonelyliar8523"
   },
   "DATE_FORMAT": "MMMM DD, YYYY",
-  "EMPTY_MESSAGE": "Today is ${DATETIME}, you have zero post.",
+  "EMPTY_MESSAGE": "Today is ${DATETIME}, and this place is so empty.",
   "ERROR_MESSAGE": "Sorry, the page you are looking for could not be found."
 }

@@ -38,7 +38,7 @@ export default connect(
       const { history, match } = this.props;
       const { number } = match.params;
       let title, created_at, body;
-      if (typeof this.props.postArchives[number] === "undefined") {
+      if (typeof this.props.postArchives.posts[number] === "undefined") {
         const res = await getPost(number);
         if (!res) {
           history.replace("/error");
@@ -48,8 +48,8 @@ export default connect(
           body = await markdownParser(res.body);
         }
       } else {
-        const { $body } = this.props.postArchives[number];
-        ({ title, created_at, body } = this.props.postArchives[number]);
+        const { $body } = this.props.postArchives.posts[number];
+        ({ title, created_at, body } = this.props.postArchives.posts[number]);
         if (!$body) {
           body = await markdownParser(body);
           this.props.markPost(number, body);

@@ -6,7 +6,11 @@ import ArchivesLoader from "./loader";
 import ArchivesPage from "../common/PageContainer";
 import PageTitle from "../common/PageTitle";
 import Archive from "./archive";
-import { USERNAME, ARCHIVES_TITLE, DATE_FORMAT } from "config";
+import { USERNAME, ARCHIVES_TITLE, DATE_FORMAT, EMPTY_MESSAGE } from "config";
+
+const todayDate = moment().format(
+  !!DATE_FORMAT ? DATE_FORMAT : "MMMM DD, YYYY"
+);
 
 export default connect(
   ({ postArchives }) => ({
@@ -22,7 +26,7 @@ export default connect(
       loaded: false
     };
     async componentDidMount() {
-      let archives = this.props.postArchives;
+      let archives = this.props.postArchives.posts;
       if (!Object.keys(archives).length) {
         const res = await getArchives();
         if (!!res.length) {
@@ -60,10 +64,10 @@ export default connect(
           {this.state.loaded ? (
             !!Archives.length ? (
               Archives
+            ) : !!EMPTY_MESSAGE ? (
+              EMPTY_MESSAGE.replace("${DATETIME}", todayDate)
             ) : (
-              `今天是 ${moment().format(
-                !!DATE_FORMAT ? DATE_FORMAT : "MMMM DD, YYYY"
-              )}, 你一篇文章也没有.`
+              `Today is ${todayDate}, and this place is so empty.`
             )
           ) : (
             <ArchivesLoader />
