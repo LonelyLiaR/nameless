@@ -73,5 +73,4 @@ Welcome to
 
 　
  
-　
 **Now please, enjoy the Nameless, and hope you like it.**
