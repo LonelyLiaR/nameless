@@ -58,7 +58,7 @@ export default connect(
         <LabelsPage>
           <PageTitle>{!!LABELS_TITLE ? LABELS_TITLE : "Labels"}</PageTitle>
           {this.state.loaded ? (
-            !!Object.keys(this.props.labelsStore).length.length ? (
+            !!Labels.length ? (
               Labels
             ) : !!EMPTY_MESSAGE ? (
               EMPTY_MESSAGE.replace("$_DATETIME_", todayDate)
