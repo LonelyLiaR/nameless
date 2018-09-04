@@ -29,21 +29,6 @@ export const getArchives = async () => {
     });
 };
 
-export const getLabels = async () => {
-  return await Fetch({
-    url: `/repos/${USERNAME}/${
-      !!REPO && typeof REPO === "string" && REPO !== "" ? REPO : USERNAME + ".github.io"
-    }/labels`,
-    method: "GET"
-  })
-    .then(res => {
-      return res.data;
-    })
-    .catch(err => {
-      return false;
-    });
-};
-
 export const getPost = async number => {
   return await Fetch({
     url: `/repos/${USERNAME}/${

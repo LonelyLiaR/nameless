@@ -1,8 +1,8 @@
 ﻿import React, { Component } from "react";
 import Styled from "styled-components";
 import { Link } from "react-router-dom";
-import PageContainer from "../common/PageContainer";
-import PageTitle from "../common/PageTitle";
+import PageContainer from "components/common/PageContainer";
+import PageTitle from "components/common/PageTitle";
 import { ERROR_MESSAGE } from "config";
 
 const ErrorPage = PageContainer.extend`

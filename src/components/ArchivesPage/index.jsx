@@ -3,9 +3,9 @@ import { connect } from "react-redux";
 import moment from "moment";
 import { getArchives } from "api";
 import ArchivesLoader from "./Loader";
-import ArchivesPage from "../common/PageContainer";
-import PageTitle from "../common/PageTitle";
-import Archive from "./Archive";
+import ArchivesPage from "components/common/PageContainer";
+import PageTitle from "components/common/PageTitle";
+import Archive from "components/common/Archive";
 import { USERNAME, ARCHIVES_TITLE, DATE_FORMAT, EMPTY_MESSAGE } from "config";
 
 const todayDate = moment().format(
@@ -13,8 +13,8 @@ const todayDate = moment().format(
 );
 
 export default connect(
-  ({ postArchives }) => ({
-    postArchives
+  ({ postsStore }) => ({
+    postsStore
   }),
   dispatch => ({
     storePosts: posts => dispatch({ type: "store-posts", posts })
@@ -26,7 +26,7 @@ export default connect(
       loaded: false
     };
     async componentDidMount() {
-      let archives = this.props.postArchives.posts;
+      let archives = this.props.postsStore;
       if (!Object.keys(archives).length) {
         const res = await getArchives();
         if (!!res.length) {

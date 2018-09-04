@@ -2,8 +2,8 @@
 import { connect } from "react-redux";
 import moment from "moment";
 import { getPost, markdownParser } from "api";
-import PageContainer from "../common/PageContainer";
-import PageTitle from "../common/PageTitle";
+import PageContainer from "components/common/PageContainer";
+import PageTitle from "components/common/PageTitle";
 import PostLoader from "./Loader";
 import Post from "./Post";
 import { DATE_FORMAT } from "config";
@@ -17,8 +17,8 @@ const PostPage = PageContainer.extend`
 `;
 
 export default connect(
-  ({ postArchives }) => ({
-    postArchives
+  ({ postsStore }) => ({
+    postsStore
   }),
   dispatch => ({
     markPost: (number, body) => dispatch({ type: "mark-post", number, body })
@@ -36,7 +36,7 @@ export default connect(
       const { history, match } = this.props;
       const { number } = match.params;
       let title, created_at, body;
-      if (typeof this.props.postArchives.posts[number] === "undefined") {
+      if (typeof this.props.postsStore[number] === "undefined") {
         const res = await getPost(number);
         if (!res) {
           history.replace("/error");
@@ -46,8 +46,8 @@ export default connect(
           body = await markdownParser(res.body);
         }
       } else {
-        const { $body } = this.props.postArchives.posts[number];
-        ({ title, created_at, body } = this.props.postArchives.posts[number]);
+        const { $body } = this.props.postsStore[number];
+        ({ title, created_at, body } = this.props.postsStore[number]);
         if (!$body) {
           body = await markdownParser(body);
           this.props.markPost(number, body);

@@ -3,28 +3,21 @@ import { connect } from "react-redux";
 import moment from "moment";
 import { getArchives } from "api";
 import LabelsLoader from "./Loader";
-import PageContainer from "../common/PageContainer";
-import PageTitle from "../common/PageTitle";
+import LabelsPage from "components/common/PageContainer";
+import PageTitle from "components/common/PageTitle";
 import Label from "./Label";
 import { USERNAME, LABELS_TITLE, EMPTY_MESSAGE, DATE_FORMAT } from "config";
-
-const LabelsPage = PageContainer.extend`
-  padding-left: 150px;
-  padding-right: 150px;
-`;
 
 const todayDate = moment().format(
   !!DATE_FORMAT ? DATE_FORMAT : "MMMM DD, YYYY"
 );
 
-const $_NULL_ = Symbol("$_NULL_");
-
 export default connect(
-  ({ postArchives }) => ({
-    postArchives
+  ({ postsStore, labelsStore }) => ({
+    postsStore,
+    labelsStore
   }),
   dispatch => ({
-    storeLabels: labels => dispatch({ type: "store-labels", labels }),
     storePosts: posts => dispatch({ type: "store-posts", posts })
   })
 )(
@@ -34,9 +27,9 @@ export default connect(
       loaded: false
     };
     async componentDidMount() {
-      let { labels } = this.props.postArchives;
+      let labels = this.props.labelsStore;
       if (!Object.keys(labels).length) {
-        let archives = this.props.postArchives.posts;
+        let archives = this.props.postsStore;
         if (!Object.keys(archives).length) {
           const res = await getArchives();
           if (!!res.length) {
@@ -50,23 +43,8 @@ export default connect(
             }
           }
           this.props.storePosts(archives);
+          labels = this.props.labelsStore;
         }
-        labels[$_NULL_] = [];
-        const posts = Object.values(archives);
-        for (let i = 0; i < posts.length; i++) {
-          const ls = posts[i].labels;
-          if (!!ls.length) {
-            for (let l = 0; l < ls.length; l++) {
-              if (typeof labels[ls[l].name] === "undefined") {
-                labels[ls[l].name] = [];
-              }
-              labels[ls[l].name].push(posts[i]);
-            }
-          } else {
-            labels[$_NULL_].push(posts[i]);
-          }
-        }
-        this.props.storeLabels(labels);
       }
       this.setState({ labels, loaded: true });
     }
@@ -80,7 +58,7 @@ export default connect(
         <LabelsPage>
           <PageTitle>{!!LABELS_TITLE ? LABELS_TITLE : "Labels"}</PageTitle>
           {this.state.loaded ? (
-            !!Object.keys(this.props.postArchives.posts).length ? (
+            !!Object.keys(this.props.postsStore).length ? (
               Labels
             ) : !!EMPTY_MESSAGE ? (
               EMPTY_MESSAGE.replace("$_DATETIME_", todayDate)

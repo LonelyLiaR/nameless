@@ -2,8 +2,8 @@
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { getOwnUserInfo } from "api";
-import PageContainer from "../common/PageContainer";
-import PageTitle from "../common/PageTitle";
+import PageContainer from "components/common/PageContainer";
+import PageTitle from "components/common/PageTitle";
 import HomeLoader from "./Loader";
 import Avatar from "./Avatar";
 import Intro from "./Intro";
