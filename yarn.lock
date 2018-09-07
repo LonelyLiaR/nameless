@@ -5413,16 +5413,6 @@ pretty-format@^20.0.3:
     ansi-regex "^2.1.1"
     ansi-styles "^3.0.0"
 
-primer-markdown@^3.7.8:
-  version "3.7.8"
-  resolved "http://registry.npm.taobao.org/primer-markdown/download/primer-markdown-3.7.8.tgz#a918b53318018aee489b1cf2dd8843cef720eb08"
-  dependencies:
-    primer-support "4.5.5"
-
-primer-support@4.5.5:
-  version "4.5.5"
-  resolved "http://registry.npm.taobao.org/primer-support/download/primer-support-4.5.5.tgz#60d292e10937d44de7f3f1582256fb6ce60ae780"
-
 private@^0.1.6, private@^0.1.7, private@^0.1.8:
   version "0.1.8"
   resolved "http://registry.npm.taobao.org/private/download/private-0.1.8.tgz#2381edb3689f7a53d653190060fcf822d2f368ff"

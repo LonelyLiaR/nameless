@@ -6,8 +6,6 @@ import { injectGlobal } from "styled-components";
 import Store from "./store";
 import App from "./App";
 import registerServiceWorker from "./registerServiceWorker";
-import { BLOG_TITLE } from "config";
-import "primer-markdown/build/build.css";
 
 injectGlobal`
   * {
@@ -50,8 +48,6 @@ injectGlobal`
     position: relative;
   }
 `;
-
-document.title = BLOG_TITLE;
 
 render(
   <HashRouter>
