@@ -29,6 +29,7 @@ injectGlobal`
     font-family: PingFang SC, Microsoft Jhenghei, Microsoft YaHei, sans-serif;
     line-height: 1.5;
     color: #333333;
+    -webkit-text-size-adjust: none;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
@@ -45,7 +46,8 @@ injectGlobal`
   }
 
   #app {
-    min-height: 100vh;
+    height: 100%;
+    position: relative;
   }
 `;
 

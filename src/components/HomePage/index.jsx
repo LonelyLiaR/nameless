@@ -14,7 +14,7 @@ import { SOCIAL_LIST, ARCHIVES_TITLE, Labels_TITLE } from "config";
 const HomePage = PageContainer.extend`
   padding-top: 0;
   padding-bottom: 0;
-  height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
