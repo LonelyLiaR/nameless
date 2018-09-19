@@ -47,6 +47,21 @@ injectGlobal`
     height: 100%;
     position: relative;
   }
+
+  .markdown-body {
+    font-size: 15px;
+    color: #333333;
+    line-height: 1.75;
+    letter-spacing: 0.1px;
+
+    h1, h2 {
+      font-weight: 500;
+    }
+
+    h1, h2, h3, h4, h5, h6, strong {
+      color: #24292e;
+    }
+  }
 `;
 
 render(

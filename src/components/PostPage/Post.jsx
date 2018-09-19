@@ -12,7 +12,7 @@ Post.Header = Styled.div`
 
 Post.Header.Title = Styled.h2`
     margin: 0;
-    font-size: 26px;
+    font-size: 30px;
 `;
 
 Post.Header.Date = Styled.p`
