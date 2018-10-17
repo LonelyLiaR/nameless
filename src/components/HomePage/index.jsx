@@ -9,7 +9,13 @@ import Avatar from "./Avatar";
 import Intro from "./Intro";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
-import { NICKNAME, SOCIAL_LIST, ARCHIVES_TITLE, LABELS_TITLE } from "config";
+import {
+  USERNAME,
+  NICKNAME,
+  SOCIAL_LIST,
+  ARCHIVES_TITLE,
+  LABELS_TITLE
+} from "config";
 
 const HomePage = PageContainer.extend`
   padding-top: 0;
@@ -67,7 +73,7 @@ export default connect(
       if (!avatar_url || !nickname || !desc) {
         res = await getOwnUserInfo();
         avatar_url = res.avatar_url;
-        nickname = !!NICKNAME ? NICKNAME : !!res.name ? res.name : res.login;
+        nickname = !!NICKNAME ? NICKNAME : !!res.name ? res.name : USERNAME;
         desc = res.bio;
       }
       this.props.storeInfo({ avatar_url, nickname, desc });
@@ -85,7 +91,7 @@ export default connect(
                 <Intro.Desc>{this.state.desc}</Intro.Desc>
               </Intro>
               <Navbar>{Navs}</Navbar>
-              <Footer>© 2018 {this.state.nickname}</Footer>
+              <Footer>© 2018 {USERNAME}</Footer>
             </Fragment>
           ) : (
             <HomeLoader />
