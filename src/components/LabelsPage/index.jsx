@@ -1,16 +1,12 @@
 ﻿import React, { Component } from "react";
 import { connect } from "react-redux";
-import moment from "moment";
 import { getArchives } from "api";
 import LabelsLoader from "./Loader";
 import LabelsPage from "components/common/PageContainer";
 import PageTitle from "components/common/PageTitle";
+import Empty from "components/common/Empty";
 import Label from "./Label";
-import { USERNAME, LABELS_TITLE, EMPTY_MESSAGE, DATE_FORMAT } from "config";
-
-const todayDate = moment().format(
-  !!DATE_FORMAT ? DATE_FORMAT : "MMMM DD, YYYY"
-);
+import { USERNAME, LABELS_TITLE } from "config";
 
 export default connect(
   ({ postsStore, labelsStore }) => ({
@@ -60,10 +56,8 @@ export default connect(
           {this.state.loaded ? (
             !!Labels.length ? (
               Labels
-            ) : !!EMPTY_MESSAGE ? (
-              EMPTY_MESSAGE.replace("$_DATETIME_", todayDate)
             ) : (
-              `Today is ${todayDate}, and this place is so empty.`
+              <Empty />
             )
           ) : (
             <LabelsLoader />

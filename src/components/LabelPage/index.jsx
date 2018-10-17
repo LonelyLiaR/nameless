@@ -1,6 +1,6 @@
 ﻿import React, { Component } from "react";
 import { connect } from "react-redux";
-import moment from "moment";
+import dayjs from "dayjs";
 import { getArchives } from "api";
 import LabelLoader from "./Loader";
 import LabelPage from "components/common/PageContainer";
@@ -59,7 +59,7 @@ export default connect(
         ({ number, created_at, title }) => (
           <Label.Archive key={number}>
             <Label.Archive.Date>
-              {moment(created_at).format(
+              {dayjs(created_at).format(
                 !!DATE_FORMAT ? DATE_FORMAT : "MMMM DD, YYYY"
               )}
             </Label.Archive.Date>

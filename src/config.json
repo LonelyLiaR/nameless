@@ -2,6 +2,9 @@
   "BLOG_TITLE": "L's Blog",
   "USERNAME": "LonelyLiaR",
   "REPO": "blog",
+  "NICKNAME": "",
+  "ARCHIVES_TITLE": "Archives",
+  "LABELS_TITLE": "Labels",
   "SOCIAL_LIST": {
     "Twitter": "https://twitter.com/LonelyLiaR8523",
     "GitHub": "https://github.com/LonelyLiaR",
@@ -10,6 +13,6 @@
     "WeiBo": "https://weibo.com/lonelyliar8523"
   },
   "DATE_FORMAT": "MMMM DD, YYYY",
-  "EMPTY_MESSAGE": "Today is $_DATETIME_, and this place is so empty.",
+  "EMPTY_MESSAGE": "Today is $_DATETIME_, and this place is so empty. 😥",
   "ERROR_MESSAGE": "Sorry, the page you are looking for could not be found."
 }

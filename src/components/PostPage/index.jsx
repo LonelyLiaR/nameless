@@ -1,6 +1,6 @@
 ﻿import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-import moment from "moment";
+import dayjs from "dayjs";
 import { getPost, markdownParser } from "api";
 import PageContainer from "components/common/PageContainer";
 import PageTitle from "components/common/PageTitle";
@@ -70,7 +70,7 @@ export default connect(
                     </Post.Header.Title>
                   </PageTitle>
                   <Post.Header.Date>
-                    {moment(this.state.created_at).format(
+                    {dayjs(this.state.created_at).format(
                       !!DATE_FORMAT ? DATE_FORMAT : "MMMM DD, YYYY"
                     )}
                   </Post.Header.Date>

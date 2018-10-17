@@ -1,16 +1,13 @@
 ﻿import React, { Component } from "react";
 import { connect } from "react-redux";
-import moment from "moment";
+import dayjs from "dayjs";
 import { getArchives } from "api";
 import ArchivesLoader from "./Loader";
 import ArchivesPage from "components/common/PageContainer";
 import PageTitle from "components/common/PageTitle";
 import Archive from "components/common/Archive";
-import { USERNAME, ARCHIVES_TITLE, DATE_FORMAT, EMPTY_MESSAGE } from "config";
-
-const todayDate = moment().format(
-  !!DATE_FORMAT ? DATE_FORMAT : "MMMM DD, YYYY"
-);
+import Empty from "components/common/Empty";
+import { USERNAME, ARCHIVES_TITLE, DATE_FORMAT } from "config";
 
 export default connect(
   ({ postsStore }) => ({
@@ -48,7 +45,7 @@ export default connect(
         ({ number, created_at, title }) => (
           <Archive key={number}>
             <Archive.Date>
-              {moment(created_at).format(
+              {dayjs(created_at).format(
                 !!DATE_FORMAT ? DATE_FORMAT : "MMMM DD, YYYY"
               )}
             </Archive.Date>
@@ -64,10 +61,8 @@ export default connect(
           {this.state.loaded ? (
             !!Archives.length ? (
               Archives
-            ) : !!EMPTY_MESSAGE ? (
-              EMPTY_MESSAGE.replace("$_DATETIME_", todayDate)
             ) : (
-              `Today is ${todayDate}, and this place is so empty.`
+              <Empty />
             )
           ) : (
             <ArchivesLoader />
