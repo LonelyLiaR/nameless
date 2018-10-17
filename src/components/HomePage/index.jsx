@@ -9,7 +9,7 @@ import Avatar from "./Avatar";
 import Intro from "./Intro";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
-import { SOCIAL_LIST, ARCHIVES_TITLE, Labels_TITLE } from "config";
+import { SOCIAL_LIST, ARCHIVES_TITLE, LABELS_TITLE } from "config";
 
 const HomePage = PageContainer.extend`
   padding-top: 0;
@@ -33,7 +33,7 @@ const Navs = (() => {
       </Link>
     </Navbar.NavItem>,
     <Navbar.NavItem key="Labels">
-      <Link to="/labels">{!!Labels_TITLE ? Labels_TITLE : "Labels"}</Link>
+      <Link to="/labels">{!!LABELS_TITLE ? LABELS_TITLE : "Labels"}</Link>
     </Navbar.NavItem>
   ];
   for (let navTitle in SOCIAL_LIST) {
