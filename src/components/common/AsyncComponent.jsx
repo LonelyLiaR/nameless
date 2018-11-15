@@ -2,8 +2,8 @@
 
 import React, { Component } from "react";
 
-export default function(importComponent) {
-  return class AsyncComponent extends Component {
+export default importComponent =>
+  class extends Component {
     state = {
       component: null
     };
@@ -16,4 +16,3 @@ export default function(importComponent) {
       return C ? <C {...this.props} /> : null;
     }
   };
-}

@@ -1,6 +1,7 @@
 ﻿import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import Styled from "styled-components";
 import { getOwnUserInfo } from "api";
 import PageContainer from "components/common/PageContainer";
 import PageTitle from "components/common/PageTitle";
@@ -17,7 +18,7 @@ import {
   LABELS_TITLE
 } from "config";
 
-const HomePage = PageContainer.extend`
+const HomePage = Styled(PageContainer)`
   padding-top: 0;
   padding-bottom: 0;
   height: 100%;

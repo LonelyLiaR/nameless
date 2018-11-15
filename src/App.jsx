@@ -9,7 +9,7 @@ const LabelPage = AsyncComponent(() => import("./components/LabelPage"));
 const PostPage = AsyncComponent(() => import("./components/PostPage"));
 const ErrorPage = AsyncComponent(() => import("./components/ErrorPage"));
 
-class App extends Component {
+export default class extends Component {
   render() {
     return (
       <Switch>
@@ -24,5 +24,3 @@ class App extends Component {
     );
   }
 }
-
-export default App;

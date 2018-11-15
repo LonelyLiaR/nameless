@@ -1,13 +1,13 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { render } from "react-dom";
 import { Provider } from "react-redux";
 import { HashRouter } from "react-router-dom";
-import { injectGlobal } from "styled-components";
+import { createGlobalStyle } from "styled-components";
 import Store from "./store";
 import App from "./App";
 import registerServiceWorker from "./registerServiceWorker";
 
-injectGlobal`
+const GlobalStyle = createGlobalStyle`
   * {
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -65,11 +65,14 @@ injectGlobal`
 `;
 
 render(
-  <HashRouter>
-    <Provider store={Store}>
-      <App />
-    </Provider>
-  </HashRouter>,
+  <Fragment>
+    <HashRouter>
+      <Provider store={Store}>
+        <App />
+      </Provider>
+    </HashRouter>
+    <GlobalStyle />
+  </Fragment>,
   document.getElementById("app")
 );
 registerServiceWorker();
