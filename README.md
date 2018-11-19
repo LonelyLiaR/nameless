@@ -46,8 +46,7 @@ Then open the config file `nameless/src/config.json`.
   "REPO": "Enter the posts store repo name, default USERNAME.github.io",
   "SOCIAL_LIST": {
     "Social name": "url"
-  },
-  "ERROR_MESSAGE": "This is Error Page's hint message"
+  }
 }
 ```
 
@@ -68,8 +67,8 @@ And you can visit the blog in `http://localhost:3000/#/`.
 　
 ## Contributing
 Welcome to
-- Pull requests.
-- Open issues.
+- [Pull requests](https://github.com/LonelyLiaR/nameless/compare).
+- [Open issues](https://github.com/LonelyLiaR/nameless/issues/new).
 
 　
  
