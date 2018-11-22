@@ -5,7 +5,7 @@ import PageContainer from "components/common/PageContainer";
 import PageTitle from "components/common/PageTitle";
 import { ERROR_MESSAGE } from "config";
 
-const ErrorPage = PageContainer.extend`
+const ErrorPage = Styled(PageContainer)`
   padding-top: 0;
   padding-bottom: 0;
   height: 100vh;
