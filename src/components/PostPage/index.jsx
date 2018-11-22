@@ -1,5 +1,6 @@
 ﻿import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
+import Styled from "styled-components";
 import dayjs from "dayjs";
 import { getPost, markdownParser } from "api";
 import PageContainer from "components/common/PageContainer";
@@ -8,7 +9,7 @@ import PostLoader from "./Loader";
 import Post from "./Post";
 import { DATE_FORMAT } from "config";
 
-const PostPage = PageContainer.extend`
+const PostPage = Styled(PageContainer)`
   padding-bottom: 75px;
 
   @media (max-width: 500px) {
