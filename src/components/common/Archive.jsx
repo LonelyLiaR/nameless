@@ -7,7 +7,7 @@ const Archive = Styled.div`
 `;
 
 Archive.Date = Styled.span`
-    width: 140px;
+    width: 150px;
     margin-right: 30px;
     font-size: 14px;
     color: #999999;

@@ -26,10 +26,8 @@ export default connect(
       let archives = this.props.postsStore;
       if (!Object.keys(archives).length) {
         const res = await getArchives();
-        if (!!res.length) {
-          const filterPosts = res.filter(({ user }) => {
-            return user.login === USERNAME;
-          });
+        if (res.length > 0) {
+          const filterPosts = res.filter(({ user }) => user.login === USERNAME);
           for (let i = 0; i < filterPosts.length; i++) {
             archives[filterPosts[i].number] = Object.assign(filterPosts[i], {
               $body: null
@@ -41,26 +39,26 @@ export default connect(
       this.setState({ archives, loaded: true });
     }
     render() {
-      const Archives = Object.values(this.state.archives).map(
-        ({ number, created_at, title }) => (
-          <Archive key={number}>
-            <Archive.Date>
-              {dayjs(created_at).format(
-                !!DATE_FORMAT ? DATE_FORMAT : "MMMM DD, YYYY"
-              )}
-            </Archive.Date>
-            <Archive.Title to={"/p/" + number}>{title.trim()}</Archive.Title>
-          </Archive>
-        )
-      );
+      const { archives, loaded } = this.state;
       return (
         <ArchivesPage>
           <PageTitle>
             {!!ARCHIVES_TITLE ? ARCHIVES_TITLE : "Archives"}
           </PageTitle>
-          {this.state.loaded ? (
-            !!Archives.length ? (
-              Archives
+          {loaded ? (
+            Object.values(archives).length > 0 ? (
+              Object.values(archives).map(({ number, created_at, title }) => (
+                <Archive key={number}>
+                  <Archive.Date>
+                    {dayjs(created_at).format(
+                      !!DATE_FORMAT ? DATE_FORMAT : "MMMM DD, YYYY"
+                    )}
+                  </Archive.Date>
+                  <Archive.Title to={"/p/" + number}>
+                    {title.trim()}
+                  </Archive.Title>
+                </Archive>
+              ))
             ) : (
               <Empty />
             )

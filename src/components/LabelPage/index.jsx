@@ -2,8 +2,6 @@
 import { connect } from "react-redux";
 import dayjs from "dayjs";
 import { getArchives } from "api";
-import LabelLoader from "./Loader";
-import LabelPage from "components/common/PageContainer";
 import PageTitle from "components/common/PageTitle";
 import Label from "./Label";
 import { USERNAME, DATE_FORMAT } from "config";
@@ -27,13 +25,11 @@ export default connect(
         typeof this.props.labelsStore[this.state.labelName] !== "undefined"
           ? this.props.labelsStore[this.state.labelName]
           : [];
-      if (!posts.length) {
+      if (posts.length === 0) {
         const res = await getArchives();
         let archives = {};
-        if (!!res.length) {
-          const filterPosts = res.filter(({ user }) => {
-            return user.login === USERNAME;
-          });
+        if (res.length > 0) {
+          const filterPosts = res.filter(({ user }) => user.login === USERNAME);
           for (let i = 0; i < filterPosts.length; i++) {
             archives[filterPosts[i].number] = Object.assign(filterPosts[i], {
               $body: null
@@ -46,8 +42,7 @@ export default connect(
             ? this.props.labelsStore[this.state.labelName]
             : [];
       }
-      if (!!posts.length) {
-        console.log(posts);
+      if (posts.length > 0) {
         this.setState({ posts, loaded: true });
       } else {
         this.props.history.replace("/error");
@@ -55,32 +50,30 @@ export default connect(
       }
     }
     render() {
-      const Posts = Object.values(this.state.posts).map(
-        ({ number, created_at, title }) => (
-          <Label.Archive key={number}>
-            <Label.Archive.Date>
-              {dayjs(created_at).format(
-                !!DATE_FORMAT ? DATE_FORMAT : "MMMM DD, YYYY"
-              )}
-            </Label.Archive.Date>
-            <Label.Archive.Title to={"/p/" + number}>
-              {title.trim()}
-            </Label.Archive.Title>
-          </Label.Archive>
-        )
-      );
+      const { labelName, posts, loaded } = this.state;
       return (
-        <LabelPage>
-          <PageTitle>{this.state.labelName}</PageTitle>
-          {this.state.loaded ? (
+        <Label.Container>
+          <PageTitle>{labelName}</PageTitle>
+          {loaded ? (
             <Label>
-              <Label.Name>{this.state.labelName}</Label.Name>
-              {Posts}
+              <Label.Name>{labelName}</Label.Name>
+              {Object.values(posts).map(({ number, created_at, title }) => (
+                <Label.Archive key={number}>
+                  <Label.Archive.Date>
+                    {dayjs(created_at).format(
+                      !!DATE_FORMAT ? DATE_FORMAT : "MMMM DD, YYYY"
+                    )}
+                  </Label.Archive.Date>
+                  <Label.Archive.Title to={"/p/" + number}>
+                    {title.trim()}
+                  </Label.Archive.Title>
+                </Label.Archive>
+              ))}
             </Label>
           ) : (
-            <LabelLoader />
+            <Label.Loader />
           )}
-        </LabelPage>
+        </Label.Container>
       );
     }
   }

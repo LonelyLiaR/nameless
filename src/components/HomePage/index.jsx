@@ -81,18 +81,21 @@ export default connect(
       this.setState({ avatar_url, nickname, desc, loaded: true });
     }
     render() {
+      const { avatar_url, nickname, desc, loaded } = this.state;
       return (
         <HomePage>
           <PageTitle />
-          {this.state.loaded ? (
+          {loaded ? (
             <Fragment>
-              <Avatar src={this.state.avatar_url} />
+              <Avatar src={avatar_url} />
               <Intro>
-                <Intro.Nickname>{this.state.nickname}</Intro.Nickname>
-                <Intro.Desc>{this.state.desc}</Intro.Desc>
+                <Intro.Nickname>{nickname}</Intro.Nickname>
+                <Intro.Desc>{desc}</Intro.Desc>
               </Intro>
               <Navbar>{Navs}</Navbar>
-              <Footer>© 2018 {USERNAME}</Footer>
+              <Footer>
+                © {new Date().getFullYear()} {USERNAME}
+              </Footer>
             </Fragment>
           ) : (
             <HomeLoader />

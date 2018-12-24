@@ -1,21 +1,10 @@
 ﻿import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-import Styled from "styled-components";
 import dayjs from "dayjs";
 import { getPost, markdownParser } from "api";
-import PageContainer from "components/common/PageContainer";
 import PageTitle from "components/common/PageTitle";
-import PostLoader from "./Loader";
 import Post from "./Post";
 import { DATE_FORMAT } from "config";
-
-const PostPage = Styled(PageContainer)`
-  padding-bottom: 75px;
-
-  @media (max-width: 500px) {
-    padding-bottom: 40px;
-  }
-`;
 
 export default connect(
   ({ postsStore }) => ({
@@ -59,33 +48,32 @@ export default connect(
       this.setState({ title, created_at, body, loaded: true });
     }
     render() {
+      const { created_at, title, body, loaded } = this.state;
       return (
-        <PostPage>
+        <Post.Container>
           <Post>
-            {this.state.loaded ? (
+            {loaded ? (
               <Fragment>
                 <Post.Header>
                   <PageTitle>
-                    <Post.Header.Title>
-                      {this.state.title.trim()}
-                    </Post.Header.Title>
+                    <Post.Header.Title>{title.trim()}</Post.Header.Title>
                   </PageTitle>
                   <Post.Header.Date>
-                    {dayjs(this.state.created_at).format(
+                    {dayjs(created_at).format(
                       !!DATE_FORMAT ? DATE_FORMAT : "MMMM DD, YYYY"
                     )}
                   </Post.Header.Date>
                 </Post.Header>
                 <Post.Body
                   className="markdown-body"
-                  dangerouslySetInnerHTML={{ __html: this.state.body }}
+                  dangerouslySetInnerHTML={{ __html: body }}
                 />
               </Fragment>
             ) : (
-              <PostLoader />
+              <Post.Loader />
             )}
           </Post>
-        </PostPage>
+        </Post.Container>
       );
     }
   }

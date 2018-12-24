@@ -1,11 +1,9 @@
 ﻿import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getArchives } from "api";
-import LabelsLoader from "./Loader";
-import LabelsPage from "components/common/PageContainer";
 import PageTitle from "components/common/PageTitle";
 import Empty from "components/common/Empty";
-import Label from "./Label";
+import Labels from "./Labels";
 import { USERNAME, LABELS_TITLE } from "config";
 
 export default connect(
@@ -24,14 +22,14 @@ export default connect(
     };
     async componentDidMount() {
       let labels = this.props.labelsStore;
-      if (!Object.keys(labels).length) {
+      if (Object.keys(labels).length === 0) {
         let archives = this.props.postsStore;
-        if (!Object.keys(archives).length) {
+        if (Object.keys(archives).length === 0) {
           const res = await getArchives();
-          if (!!res.length) {
-            const filterPosts = res.filter(({ user }) => {
-              return user.login === USERNAME;
-            });
+          if (res.length > 0) {
+            const filterPosts = res.filter(
+              ({ user }) => user.login === USERNAME
+            );
             for (let i = 0; i < filterPosts.length; i++) {
               archives[filterPosts[i].number] = Object.assign(filterPosts[i], {
                 $body: null
@@ -45,24 +43,24 @@ export default connect(
       this.setState({ labels, loaded: true });
     }
     render() {
-      const Labels = Object.keys(this.state.labels).map(labelName => (
-        <Label to={`/label/${labelName}`} key={labelName}>
-          {labelName}
-        </Label>
-      ));
+      const { labels, loaded } = this.state;
       return (
-        <LabelsPage>
+        <Labels>
           <PageTitle>{!!LABELS_TITLE ? LABELS_TITLE : "Labels"}</PageTitle>
-          {this.state.loaded ? (
-            !!Labels.length ? (
-              Labels
+          {loaded ? (
+            Object.keys(labels).length > 0 ? (
+              Object.keys(labels).map(labelName => (
+                <Labels.Label to={`/label/${labelName}`} key={labelName}>
+                  {labelName}
+                </Labels.Label>
+              ))
             ) : (
               <Empty />
             )
           ) : (
-            <LabelsLoader />
+            <Labels.Loader />
           )}
-        </LabelsPage>
+        </Labels>
       );
     }
   }
