@@ -1,4 +1,4 @@
-﻿import React, { Fragment } from "react";
+﻿import React from "react";
 import Styled from "styled-components";
 import ContentLoader from "react-content-loader";
 
@@ -6,7 +6,7 @@ const { clientWidth, clientHeight } = document.documentElement || document.body;
 
 const Loader = () => {
   return (
-    <Fragment>
+    <>
       <rect x="0" y="14" width="280" height="28" />
       <rect x="0" y="64" width="140" height="16" />
       <rect x="0" y="142" width={clientWidth} height="18" />
@@ -21,7 +21,7 @@ const Loader = () => {
       <rect x="0" y="462" width={clientWidth} height="18" />
       <rect x="0" y="494" width={clientWidth} height="18" />
       <rect x="0" y="526" width={clientWidth * 0.8} height="18" />
-    </Fragment>
+    </>
   );
 };
 

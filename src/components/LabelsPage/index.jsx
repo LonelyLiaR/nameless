@@ -1,4 +1,4 @@
-﻿import React, { Component } from "react";
+﻿import React from "react";
 import { connect } from "react-redux";
 import { getArchives } from "api";
 import PageTitle from "components/common/PageTitle";
@@ -15,7 +15,7 @@ export default connect(
     storePosts: posts => dispatch({ type: "store-posts", posts })
   })
 )(
-  class extends Component {
+  class extends React.PureComponent {
     state = {
       labels: {},
       loaded: false

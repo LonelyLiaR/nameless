@@ -1,14 +1,14 @@
-﻿import React, { Fragment } from "react";
+﻿import React from "react";
 import ContentLoader from "react-content-loader";
 
 const { clientWidth, clientHeight } = document.documentElement || document.body;
 
 const Loader = () => (
-  <Fragment>
+  <>
     <circle cx="4" cy="7" r="4" />
     <rect x="22" y="0" width="120" height="14" />
     {clientWidth <= 500 ? (
-      <Fragment>
+      <>
         <rect x="0" y="85" width="150" height="14" />
         <rect x="0" y="115" width={clientWidth * 0.65} height="14" />
         <rect x="0" y="155" width="150" height="14" />
@@ -19,9 +19,9 @@ const Loader = () => (
         <rect x="0" y="325" width={clientWidth * 0.6} height="14" />
         <rect x="0" y="365" width="150" height="14" />
         <rect x="0" y="395" width={clientWidth * 0.75} height="14" />
-      </Fragment>
+      </>
     ) : (
-      <Fragment>
+      <>
         <rect x="35" y="85" width="130" height="14" />
         <rect x="200" y="85" width="300" height="14" />
         <rect x="35" y="130" width="130" height="14" />
@@ -32,9 +32,9 @@ const Loader = () => (
         <rect x="200" y="220" width="450" height="14" />
         <rect x="35" y="265" width="130" height="14" />
         <rect x="200" y="265" width="400" height="14" />
-      </Fragment>
+      </>
     )}
-  </Fragment>
+  </>
 );
 
 const LabelsLoader = () => (

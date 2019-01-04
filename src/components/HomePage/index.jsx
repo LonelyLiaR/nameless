@@ -1,4 +1,4 @@
-﻿import React, { Component, Fragment } from "react";
+﻿import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import Styled from "styled-components";
@@ -61,14 +61,14 @@ export default connect(
     storeInfo: info => dispatch({ type: "store-info", info })
   })
 )(
-  class extends Component {
+  class extends React.PureComponent {
     state = {
       avatar_url: "",
       nickname: "",
       desc: "",
       loaded: false
     };
-    async componentWillMount() {
+    async componentDidMount() {
       let res = this.props.ownUserInfo;
       let { avatar_url, nickname, desc } = res;
       if (!avatar_url || !nickname || !desc) {
@@ -86,7 +86,7 @@ export default connect(
         <HomePage>
           <PageTitle />
           {loaded ? (
-            <Fragment>
+            <>
               <Avatar src={avatar_url} />
               <Intro>
                 <Intro.Nickname>{nickname}</Intro.Nickname>
@@ -96,7 +96,7 @@ export default connect(
               <Footer>
                 © {new Date().getFullYear()} {USERNAME}
               </Footer>
-            </Fragment>
+            </>
           ) : (
             <HomeLoader />
           )}

@@ -1,4 +1,4 @@
-﻿import React, { Component, Fragment } from "react";
+﻿import React from "react";
 import { connect } from "react-redux";
 import dayjs from "dayjs";
 import { getPost, markdownParser } from "api";
@@ -14,7 +14,7 @@ export default connect(
     markPost: (number, body) => dispatch({ type: "mark-post", number, body })
   })
 )(
-  class extends Component {
+  class extends React.PureComponent {
     state = {
       title: "",
       created_at: "",
@@ -53,7 +53,7 @@ export default connect(
         <Post.Container>
           <Post>
             {loaded ? (
-              <Fragment>
+              <>
                 <Post.Header>
                   <PageTitle>
                     <Post.Header.Title>{title.trim()}</Post.Header.Title>
@@ -68,7 +68,7 @@ export default connect(
                   className="markdown-body"
                   dangerouslySetInnerHTML={{ __html: body }}
                 />
-              </Fragment>
+              </>
             ) : (
               <Post.Loader />
             )}

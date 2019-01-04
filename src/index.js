@@ -1,9 +1,6 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { render } from "react-dom";
-import { Provider } from "react-redux";
-import { HashRouter } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
-import Store from "./store";
 import App from "./App";
 import registerServiceWorker from "./registerServiceWorker";
 
@@ -65,14 +62,11 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 render(
-  <Fragment>
-    <HashRouter>
-      <Provider store={Store}>
-        <App />
-      </Provider>
-    </HashRouter>
+  <>
+    <App />
     <GlobalStyle />
-  </Fragment>,
+  </>,
   document.getElementById("app")
 );
+
 registerServiceWorker();

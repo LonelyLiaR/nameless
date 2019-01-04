@@ -1,4 +1,4 @@
-﻿import React, { Component } from "react";
+﻿import React from "react";
 import { connect } from "react-redux";
 import dayjs from "dayjs";
 import { getArchives } from "api";
@@ -17,7 +17,7 @@ export default connect(
     storePosts: posts => dispatch({ type: "store-posts", posts })
   })
 )(
-  class extends Component {
+  class extends React.PureComponent {
     state = {
       archives: {},
       loaded: false

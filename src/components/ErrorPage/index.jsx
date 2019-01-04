@@ -1,4 +1,4 @@
-﻿import React, { Component } from "react";
+﻿import React from "react";
 import Styled from "styled-components";
 import { Link } from "react-router-dom";
 import PageContainer from "components/common/PageContainer";
@@ -25,14 +25,10 @@ const ErrorMessage = Styled.p`
     text-align: center;
 `;
 
-export default class extends Component {
-  render() {
-    return (
-      <ErrorPage>
-        <PageTitle>Error</PageTitle>
-        <ErrorMessage>{ERROR_MESSAGE}</ErrorMessage>
-        <Link to="/">Back</Link>
-      </ErrorPage>
-    );
-  }
-}
+export default React.memo(() => (
+  <ErrorPage>
+    <PageTitle>Error</PageTitle>
+    <ErrorMessage>{ERROR_MESSAGE}</ErrorMessage>
+    <Link to="/">Back</Link>
+  </ErrorPage>
+));

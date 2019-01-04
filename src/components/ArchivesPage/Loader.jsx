@@ -1,11 +1,11 @@
-﻿import React, { Fragment } from "react";
+﻿import React from "react";
 import ContentLoader from "react-content-loader";
 
 const { clientWidth, clientHeight } = document.documentElement || document.body;
 
 const Loader = () =>
   clientWidth <= 500 ? (
-    <Fragment>
+    <>
       <rect x="0" y="0" width="150" height="14" />
       <rect x="0" y="30" width={clientWidth * 0.65} height="14" />
       <rect x="0" y="70" width="150" height="14" />
@@ -16,9 +16,9 @@ const Loader = () =>
       <rect x="0" y="230" width={clientWidth * 0.6} height="14" />
       <rect x="0" y="270" width="150" height="14" />
       <rect x="0" y="300" width={clientWidth * 0.75} height="14" />
-    </Fragment>
+    </>
   ) : (
-    <Fragment>
+    <>
       <rect x="35" y="0" width="130" height="14" />
       <rect x="200" y="0" width="300" height="14" />
       <rect x="35" y="45" width="130" height="14" />
@@ -29,7 +29,7 @@ const Loader = () =>
       <rect x="200" y="135" width="450" height="14" />
       <rect x="35" y="180" width="130" height="14" />
       <rect x="200" y="180" width="400" height="14" />
-    </Fragment>
+    </>
   );
 
 const ArchivesLoader = () => (

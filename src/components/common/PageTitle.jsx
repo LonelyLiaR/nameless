@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { Helmet } from "react-helmet";
 import { BLOG_TITLE } from "config";
 
@@ -9,10 +9,10 @@ export default ({ children }) => {
       : typeof children === "object" &&
         children.type !== null &&
         typeof children.props.children === "string"
-        ? children.props.children
-        : "";
+      ? children.props.children
+      : "";
   return (
-    <Fragment>
+    <>
       <Helmet>
         <title>
           {!!title ? `${title} - ` : ""}
@@ -20,6 +20,6 @@ export default ({ children }) => {
         </title>
       </Helmet>
       {typeof children === "object" ? children : ""}
-    </Fragment>
+    </>
   );
 };
