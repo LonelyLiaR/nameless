@@ -66,7 +66,7 @@ And you can visit the blog in `http://localhost:3000/#/`.
 
 　
 ## Contributing
-Welcome to
+Welcome to:
 - [Pull requests](https://github.com/LonelyLiaR/nameless/compare).
 - [Open issues](https://github.com/LonelyLiaR/nameless/issues/new).
 
