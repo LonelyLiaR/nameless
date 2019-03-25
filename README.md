@@ -72,7 +72,7 @@ And you can visit the blog in `http://localhost:3000/#/`.
 　
 ## Scripts
 - `npm run build` or `yarn build` Generate blog files, the `build` folder's contents is the deploy website.
-- `git pull` Update Nameless. You need to re-generate blog files and re-deploy it.
+- `git pull` Update Nameless. You need to regenerate blog files and redeploy it.
 
 　
 ## Contributing
