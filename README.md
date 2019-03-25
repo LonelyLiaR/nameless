@@ -44,7 +44,7 @@ Then open the configs file `src/custom-configs.json`.
 }
 ```
 And you can customize some optional configs:
-```json
+```
 {
   "AVATAR": "Customize display avatar's link",
   "NICKNAME": "Customize display nickname",
@@ -52,7 +52,7 @@ And you can customize some optional configs:
   "LABELS_TITLE": "LabelsPage's entry name",
   "SOCIALS_LIST": {  // Those will be displayed in your HomePage.
     "SocialName": "url"
-    ... // may set more than one.
+    //... may set more than one.
   },
   "DATE_FORMAT": "Customize display date format",
   "EMPTY_MESSAGE": "Customize display EmptyPage hints",
