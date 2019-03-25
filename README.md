@@ -7,16 +7,16 @@ English | [中文文档](https://github.com/LonelyLiaR/blog/issues/1)
 
 Nameless is a Blog-System based on **React** and **GitHub Issues**. Simple and Grace. :wind_chime:  
 
-[Priview](https://lonelyliar.github.io/blog)  
+[Priview](https://nghtmre.surge.sh/)  
 
-![Preview](https://user-images.githubusercontent.com/12504732/43952018-42379796-9cc7-11e8-87bd-7c015be988f1.jpg)
+![Preview](https://i.loli.net/2019/03/25/5c988196afb34.jpg)
 
 
 ## Features
 - Hyper succinct style.
 - All posts are based GitHub Issues, support Markdown, WYSIWYG.
 - You can manage posts in Issues directly, easy and low cost. (But you cant delete post, can just hidden post. (Close issues))
-- Commenting system.
+- Commenting system. (Upcoming)
 
 　
 ## Getting Started
@@ -24,37 +24,47 @@ First create a new GitHub repo. Assume that repo name is `blog`.
 This repo Issues is where the posts are stored.
 Of course you can also store the generated blog files here, so you can visit the blog by visit the repo's GitHub Page.
 
-Then ~after star Nameless,~ run:
+Then ~after star Nameless,~ run the following commands:
 ```shell
-# clone Nameless.
-git clone https://github.com/LonelyLiaR/nameless
+$ git clone https://github.com/LonelyLiaR/nameless
 
-# switch to Nameless.
-cd nameless
+$ cd nameless
 
-# install dependencies.
-npm install
-## or you can use Yarn.
-yarn
+$ npm install
+# or you can use Yarn.
+$ yarn
 ```
 
-Then open the config file `nameless/src/config.json`.
+Then open the configs file `src/custom-configs.json`.
 ```json
 {
   "BLOG_TITLE": "This is Blog's title",
-  "USERNAME": "Enter your GitHub username in this place",
-  "REPO": "Enter the posts store repo name, default USERNAME.github.io",
-  "SOCIAL_LIST": {
-    "Social name": "url"
-  }
+  "USERNAME": "Enter your GitHub USERNAME in this place",
+  "REPO": "Enter the posts store repo name, default USERNAME.github.io"
+}
+```
+And you can customize some optional configs:
+```json
+{
+  "AVATAR": "Customize display avatar's link",
+  "NICKNAME": "Customize display nickname",
+  "ARCHIVES_TITLE": "ArchivesPage's entry name",
+  "LABELS_TITLE": "LabelsPage's entry name",
+  "SOCIALS_LIST": {  // Those will be displayed in your HomePage.
+    "SocialName": "url"
+    ... // may set more than one.
+  },
+  "DATE_FORMAT": "Customize display date format",
+  "EMPTY_MESSAGE": "Customize display EmptyPage hints",
+  "ERROR_MESSAGE": "Customize display ErrorPage hints"
 }
 ```
 
-Run start after modify the config：
+Run start after modify the configs：
 ```shell
-npm start
+$ npm start
 # or
-yarn start
+$ yarn start
 ```
 
 And you can visit the blog in `http://localhost:3000/#/`.
