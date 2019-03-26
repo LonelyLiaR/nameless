@@ -82,7 +82,7 @@ export default connect(
     }
     render() {
       const { labelName, loaded } = this.state;
-      const posts = Object.values<IPost>(this.state.posts);
+      const posts = Object.values<IPost>(this.state.posts).reverse();
       return (
         <Label.Container>
           <PageTitle>{labelName}</PageTitle>

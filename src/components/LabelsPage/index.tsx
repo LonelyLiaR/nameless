@@ -62,7 +62,7 @@ export default connect(
             }
           }
           storePosts(archives);
-          labels = labelsStore;
+          labels = this.props.labelsStore;
         }
       }
       this.setState({ labels, loaded: true });

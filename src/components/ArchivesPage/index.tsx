@@ -60,7 +60,7 @@ export default connect(
     }
     public render() {
       const { archives, loaded } = this.state;
-      const posts = Object.values<IPost>(archives);
+      const posts = Object.values<IPost>(archives).reverse();
       return (
         <ArchivesPage>
           <PageTitle>{ARCHIVES_TITLE}</PageTitle>
