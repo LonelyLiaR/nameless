@@ -57,7 +57,9 @@ And you can customize some optional configs:
   },
   "DATE_FORMAT": "Customize display date format",
   "EMPTY_MESSAGE": "Customize display EmptyPage hints",
-  "ERROR_MESSAGE": "Customize display ErrorPage hints"
+  "ERROR_TITLE": "Customize display ErrorPage title",
+  "ERROR_MESSAGE": "Customize display ErrorPage hints",
+  "ERROR_NAV": "Customize display ErrorPage back HomePage's nav name"
 }
 ```
 
