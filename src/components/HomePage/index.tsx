@@ -15,6 +15,7 @@ import {
   USERNAME,
   AVATAR,
   NICKNAME,
+  BIO,
   SOCIALS_LIST,
   ARCHIVES_TITLE,
   LABELS_TITLE
@@ -91,9 +92,9 @@ export default connect(
       let { avatar_url, nickname, desc } = res;
       if (!avatar_url || !nickname || !desc) {
         res = await getOwnUserInfo();
-        avatar_url = !!AVATAR ? AVATAR : res.avatar_url;
+        avatar_url = AVATAR.length > 0 ? AVATAR : res.avatar_url;
         nickname = NICKNAME;
-        desc = res.bio;
+        desc = BIO.length > 0 ? BIO : res.bio;
       }
       this.props.storeInfo({ avatar_url, nickname, desc });
       this.setState({ avatar_url, nickname, desc, loaded: true });

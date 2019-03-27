@@ -4,6 +4,7 @@ export default {
   REPO: "",
   AVATAR: "",
   NICKNAME: USERNAME,
+  BIO: "",
   ARCHIVES_TITLE: "Archives",
   LABELS_TITLE: "Labels",
   SOCIALS_LIST: {},

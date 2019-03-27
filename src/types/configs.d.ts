@@ -8,6 +8,7 @@ declare interface IConfigs {
   readonly REPO: string;
   readonly AVATAR: string;
   readonly NICKNAME: string;
+  readonly BIO: string;
   readonly ARCHIVES_TITLE: string;
   readonly LABELS_TITLE: string;
   readonly SOCIALS_LIST: ISocialsList;
