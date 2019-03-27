@@ -69,8 +69,8 @@ export default connect(
         }
         storePosts(archives);
         posts =
-          typeof labelsStore[labelName] !== "undefined"
-            ? labelsStore[labelName]
+          typeof this.props.labelsStore[labelName] !== "undefined"
+            ? this.props.labelsStore[labelName]
             : [];
       }
       if (posts.length > 0) {

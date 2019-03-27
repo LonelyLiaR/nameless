@@ -1,9 +1,10 @@
 ﻿import React from "react";
 import Styled from "styled-components";
+import dayjs from "dayjs";
 import { Link } from "react-router-dom";
 import PageContainer from "components/common/PageContainer";
 import PageTitle from "components/common/PageTitle";
-import { ERROR_TITLE, ERROR_MESSAGE, ERROR_NAV } from "configs";
+import { DATE_FORMAT, ERROR_TITLE, ERROR_MESSAGE, ERROR_NAV } from "configs";
 
 const ErrorPage = Styled(PageContainer)`
   padding-top: 0;
@@ -25,10 +26,14 @@ const ErrorMessage = Styled.p`
   text-align: center;
 `;
 
+const todayDate = dayjs().format(DATE_FORMAT);
+
 export default React.memo(() => (
   <ErrorPage>
     <PageTitle>{ERROR_TITLE}</PageTitle>
-    <ErrorMessage>{ERROR_MESSAGE}</ErrorMessage>
+    <ErrorMessage>
+      {ERROR_MESSAGE.replace("$_DATETIME_", todayDate)}
+    </ErrorMessage>
     <Link to="/">{ERROR_NAV}</Link>
   </ErrorPage>
 ));
