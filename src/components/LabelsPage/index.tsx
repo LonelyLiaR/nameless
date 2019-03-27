@@ -44,7 +44,7 @@ export default connect(
       labels: {},
       loaded: false
     };
-    async componentDidMount() {
+    public async componentDidMount() {
       const { postsStore, labelsStore, storePosts } = this.props;
       let labels = labelsStore;
       if (Object.keys(labels).length === 0) {
@@ -67,7 +67,7 @@ export default connect(
       }
       this.setState({ labels, loaded: true });
     }
-    render() {
+    public render() {
       const { loaded } = this.state;
       const labels = Object.keys(this.state.labels);
       return (

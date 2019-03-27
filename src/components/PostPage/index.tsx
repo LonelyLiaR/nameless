@@ -45,7 +45,7 @@ export default connect(
       body: "",
       loaded: false
     };
-    async componentDidMount() {
+    public async componentDidMount() {
       const { postsStore, markPost, history, match } = this.props;
       const number = +match.params.number;
       let title, created_at, body;
@@ -70,7 +70,7 @@ export default connect(
       }
       this.setState({ title, created_at, body, loaded: true });
     }
-    render() {
+    public render() {
       const { created_at, title, body, loaded } = this.state;
       return (
         <Post.Container>

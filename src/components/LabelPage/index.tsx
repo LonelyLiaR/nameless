@@ -47,7 +47,7 @@ export default connect(
       posts: {},
       loaded: false
     };
-    async componentDidMount() {
+    public async componentDidMount() {
       const { labelsStore, storePosts, history } = this.props;
       const { labelName } = this.state;
       let posts =
@@ -80,7 +80,7 @@ export default connect(
         return false;
       }
     }
-    render() {
+    public render() {
       const { labelName, loaded } = this.state;
       const posts = Object.values<IPost>(this.state.posts).reverse();
       return (
