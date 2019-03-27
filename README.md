@@ -48,6 +48,7 @@ And you can customize some optional configs:
 {
   "AVATAR": "Customize display avatar's link",
   "NICKNAME": "Customize display nickname",
+  "BIO": "Customize display bio",
   "ARCHIVES_TITLE": "ArchivesPage's entry name",
   "LABELS_TITLE": "LabelsPage's entry name",
   "SOCIALS_LIST": {  // Those will be displayed in your HomePage.
