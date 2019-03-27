@@ -7,7 +7,8 @@ export const BLOG_TITLE = configs.BLOG_TITLE;
 export const USERNAME = configs.USERNAME;
 export const REPO = configs.REPO;
 export const AVATAR = configs.AVATAR;
-export const NICKNAME = configs.NICKNAME;
+export const NICKNAME =
+  configs.NICKNAME.length > 0 ? configs.NICKNAME : USERNAME;
 export const BIO = configs.BIO;
 export const ARCHIVES_TITLE = configs.ARCHIVES_TITLE;
 export const LABELS_TITLE = configs.LABELS_TITLE;
