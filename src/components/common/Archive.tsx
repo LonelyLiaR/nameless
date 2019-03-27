@@ -9,7 +9,7 @@ const Archive = Styled.div`
 
 export default class extends React.PureComponent {
   public static Date = Styled.span`
-        width: 150px;
+        min-width: 150px;
         margin-right: 30px;
         font-size: 14px;
         color: #999999;
