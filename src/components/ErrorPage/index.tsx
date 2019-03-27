@@ -3,7 +3,7 @@ import Styled from "styled-components";
 import { Link } from "react-router-dom";
 import PageContainer from "components/common/PageContainer";
 import PageTitle from "components/common/PageTitle";
-import { ERROR_MESSAGE } from "configs";
+import { ERROR_TITLE, ERROR_MESSAGE, ERROR_NAV } from "configs";
 
 const ErrorPage = Styled(PageContainer)`
   padding-top: 0;
@@ -27,8 +27,8 @@ const ErrorMessage = Styled.p`
 
 export default React.memo(() => (
   <ErrorPage>
-    <PageTitle>Error</PageTitle>
+    <PageTitle>{ERROR_TITLE}</PageTitle>
     <ErrorMessage>{ERROR_MESSAGE}</ErrorMessage>
-    <Link to="/">Back</Link>
+    <Link to="/">{ERROR_NAV}</Link>
   </ErrorPage>
 ));

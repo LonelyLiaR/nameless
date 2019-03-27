@@ -15,7 +15,7 @@ export default class extends React.PureComponent {
         padding: 0 6px;
   
         > a {
-            font-size: 14px;
+            font-size: 15px;
         }
     `;
   public render() {
