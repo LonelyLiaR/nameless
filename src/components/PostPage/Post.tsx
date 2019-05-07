@@ -6,6 +6,10 @@ import Loader from "./Loader";
 const Post = Styled.article`
     max-width: 650px;
     margin: auto;
+
+    .markdown-body h2 {
+      margin-top: 36px;
+    }
 `;
 
 const PostHeader = Styled.div`
