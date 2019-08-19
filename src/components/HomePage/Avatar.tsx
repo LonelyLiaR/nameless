@@ -14,7 +14,7 @@ const AvatarBase = Styled.span`
     display: block;
 `;
 
-const Avatar = (props: IProps) => <img {...props} />;
+const Avatar = (props: IProps) => <img {...props} alt="avatar" />;
 
 export default class extends React.PureComponent<IProps> {
   public render() {

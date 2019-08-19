@@ -16,7 +16,7 @@
     : "Labels";
   configs.SOCIALS_LIST =
     !!configs.SOCIALS_LIST &&
-    Object.keys(<ISocialsList>customConfigs.SOCIALS_LIST).length > 0
+    Object.keys(customConfigs.SOCIALS_LIST as ISocialsList).length > 0
       ? customConfigs.SOCIALS_LIST
       : {};
   configs.DATE_FORMAT = !!customConfigs.DATE_FORMAT
