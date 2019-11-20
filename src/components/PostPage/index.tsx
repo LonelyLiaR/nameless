@@ -35,10 +35,10 @@ export default connect(
 )(
   class extends React.PureComponent<
     IMapStateToProps &
-      IMapDispatchToProps &
-      RouteComponentProps<{ number: string }>,
+    IMapDispatchToProps &
+    RouteComponentProps<{ number: string }>,
     IPageState
-  > {
+    > {
     readonly state = {
       title: "",
       created_at: "",
@@ -68,6 +68,7 @@ export default connect(
           body = $body;
         }
       }
+      body = body.replace(/user-content-/g, '');
       this.setState({ title, created_at, body, loaded: true });
     }
     public render() {
@@ -91,8 +92,8 @@ export default connect(
                 />
               </>
             ) : (
-              <Post.Loader />
-            )}
+                <Post.Loader />
+              )}
           </Post>
         </Post.Container>
       );
