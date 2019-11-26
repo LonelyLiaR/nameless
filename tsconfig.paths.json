@@ -6,7 +6,8 @@
       "components/*": ["src/components/*"],
       "store/*": ["src/store/*"],
       "types/*": ["src/types/*"],
-      "configs": ["src/configs/index.ts"]
+      "configs": ["src/configs/index.ts"],
+      "utils/*": ["src/utils/*"],
     }
   }
 }

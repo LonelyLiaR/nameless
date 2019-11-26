@@ -3,6 +3,7 @@ import { RouteComponentProps } from "react-router";
 import { connect } from "react-redux";
 import dayjs from "dayjs";
 import { getPost, markdownParser } from "api";
+import { parse, stringify } from 'utils/query-string';
 import PageTitle from "components/common/PageTitle";
 import Post from "./Post";
 import { MARK_POST } from "store/actions";
@@ -39,16 +40,21 @@ export default connect(
     RouteComponentProps<{ number: string }>,
     IPageState
     > {
-    readonly state = {
-      title: "",
-      created_at: "",
-      body: "",
-      loaded: false
-    };
+    constructor(props: any) {
+      super(props);
+      (this as any).postBody = React.createRef();
+      this.state = {
+        title: "",
+        created_at: "",
+        body: "",
+        loaded: false
+      };
+    }
     public async componentDidMount() {
-      const { postsStore, markPost, history, match } = this.props;
+      const { postsStore, markPost, history, location, match } = this.props;
       const number = +match.params.number;
       let title, created_at, body;
+
       if (typeof postsStore[number] === "undefined") {
         const res = await getPost(number);
         if (!res) {
@@ -68,8 +74,43 @@ export default connect(
           body = $body;
         }
       }
-      body = body.replace(/user-content-/g, '');
       this.setState({ title, created_at, body, loaded: true });
+      
+      setTimeout(() => {
+        const postBody = (this as any).postBody.current;
+
+        function scrollToAnchor(anchor: string): void {
+          if (!postBody.querySelector(`#${anchor}`)) {
+            try {
+              postBody.querySelector(`[name=user-content-${anchor}]`).scrollIntoView();
+            } catch { }
+          }
+        }
+
+        if (!!location.search) {
+          const { anchor = '' } = parse(location.search) as any;
+          !!anchor && scrollToAnchor(anchor);
+        } else if (!!location.hash) {
+          const anchor = location.hash.replace('#', '');
+          !!anchor && scrollToAnchor(anchor);
+        }
+
+        postBody.querySelectorAll("a").forEach((a: HTMLAnchorElement) => {
+          if (a.hostname === window.location.hostname && !!a.hash) {
+            a.addEventListener('click', e => {
+              const anchor = a.hash.replace('#', '');
+
+              // if HashRouter.
+              if (location.pathname === window.location.hash.replace('#', '').replace(/\?.*/, '')) {
+                e.preventDefault();
+                history.push(`?${stringify({ anchor })}`);
+              }
+
+              scrollToAnchor(anchor);
+            });
+          }
+        })
+      }, 1);
     }
     public render() {
       const { created_at, title, body, loaded } = this.state;
@@ -88,6 +129,7 @@ export default connect(
                 </Post.Header>
                 <Post.Body
                   className="markdown-body"
+                  ref={(this as any).postBody}
                   dangerouslySetInnerHTML={{ __html: body }}
                 />
               </>

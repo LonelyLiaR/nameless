@@ -46,7 +46,7 @@ export default class extends React.PureComponent {
         }
     `;
   public static Header = Header;
-  public static Body = (props: BodyProps) => <div {...props} />;
+  public static Body = React.forwardRef((props: BodyProps, ref: any) => <div {...props} ref={ref} />);
   public static Loader = Loader;
   public render() {
     return <Post {...this.props} />;
