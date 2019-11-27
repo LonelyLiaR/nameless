@@ -34,7 +34,7 @@ export default connect(
       dispatch({ type: MARK_POST, number, body })
   })
 )(
-  class extends React.PureComponent<
+  class extends React.Component<
     IMapStateToProps &
     IMapDispatchToProps &
     RouteComponentProps<{ number: string }>,
@@ -50,9 +50,22 @@ export default connect(
         loaded: false
       };
     }
-    public async componentDidMount() {
+    public componentDidMount() {
+      this.renderPost();
+    }
+    public shouldComponentUpdate(newProps: any, newState: IPageState) {
+      const number = +newProps.match.params.number;
+      if (number !== +this.props.match.params.number) {
+        if (typeof this.props.postsStore[number] === "undefined") {
+          newState.loaded = false;
+        }
+        this.renderPost(number);
+      }
+      return true;
+    }
+    public async renderPost(number = 0) {
       const { postsStore, markPost, history, location, match } = this.props;
-      const number = +match.params.number;
+      if (number === 0) number = +match.params.number;
       let title, created_at, body;
 
       if (typeof postsStore[number] === "undefined") {
@@ -75,7 +88,7 @@ export default connect(
         }
       }
       this.setState({ title, created_at, body, loaded: true });
-      
+
       setTimeout(() => {
         const postBody = (this as any).postBody.current;
 
@@ -96,18 +109,26 @@ export default connect(
         }
 
         postBody.querySelectorAll("a").forEach((a: HTMLAnchorElement) => {
-          if (a.hostname === window.location.hostname && !!a.hash) {
-            a.addEventListener('click', e => {
-              const anchor = a.hash.replace('#', '');
+          if (a.hostname === window.location.hostname) {
+            if (!!a.hash) {
+              a.addEventListener('click', e => {
+                const anchor = a.hash.replace('#', '');
 
-              // if HashRouter.
-              if (location.pathname === window.location.hash.replace('#', '').replace(/\?.*/, '')) {
+                // if HashRouter.
+                if (location.pathname === window.location.hash.replace('#', '').replace(/\?.*/, '')) {
+                  e.preventDefault();
+                  history.push(`?${stringify({ anchor })}`);
+                }
+
+                scrollToAnchor(anchor);
+              });
+            } else if (!!/^\/\d+$/.exec(a.pathname)) {
+              a.addEventListener('click', e => {
                 e.preventDefault();
-                history.push(`?${stringify({ anchor })}`);
-              }
-
-              scrollToAnchor(anchor);
-            });
+                const postNumber = (/\d+$/.exec(a.pathname) as any)[0];
+                history.push(`/p/${(postNumber as string)}`);
+              });
+            }
           }
         })
       }, 1);
