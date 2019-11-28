@@ -35,14 +35,15 @@ export default connect(
   class extends React.PureComponent<
     IMapStateToProps & IMapDispatchToProps,
     { archives: PostsStore.IState; loaded: boolean }
-  > {
+    > {
     readonly state = {
       archives: {},
       loaded: false
     };
     public async componentDidMount() {
       let archives = this.props.postsStore;
-      if (!Object.keys(archives).length) {
+      const { length } = Object.keys(archives);
+      if (!length || length !== +Object.keys(archives)[length - 1]) {
         const res = await getArchives();
         if (res.length > 0) {
           const filterPosts = res.filter(
@@ -77,11 +78,11 @@ export default connect(
                 </Archive>
               ))
             ) : (
-              <Empty />
-            )
+                <Empty />
+              )
           ) : (
-            <ArchivesLoader />
-          )}
+              <ArchivesLoader />
+            )}
         </ArchivesPage>
       );
     }

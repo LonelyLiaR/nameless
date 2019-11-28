@@ -6,7 +6,7 @@ import { getPost, markdownParser } from "api";
 import { parse, stringify } from 'utils/query-string';
 import PageTitle from "components/common/PageTitle";
 import Post from "./Post";
-import { MARK_POST } from "store/actions";
+import { STORE_POSTS, MARK_POST } from "store/actions";
 import { PostsStore } from "types/reducers";
 import { DATE_FORMAT } from "configs";
 
@@ -16,6 +16,7 @@ interface IMapStateToProps {
 
 interface IMapDispatchToProps {
   markPost: (number: number, body: string) => void;
+  storePosts: (posts: PostsStore.IState) => void;
 }
 
 interface IPageState {
@@ -30,8 +31,10 @@ export default connect(
     postsStore: state.postsStore
   }),
   dispatch => ({
+    storePosts: (posts: PostsStore.IState) =>
+      dispatch({ type: STORE_POSTS, posts }),
     markPost: (number: number, body: string) =>
-      dispatch({ type: MARK_POST, number, body })
+      dispatch({ type: MARK_POST, number, body }),
   })
 )(
   class extends React.Component<
@@ -40,7 +43,7 @@ export default connect(
     RouteComponentProps<{ number: string }>,
     IPageState
     > {
-    constructor(props: any) {
+    constructor(props: IMapStateToProps & IMapDispatchToProps & RouteComponentProps<{ number: string }>) {
       super(props);
       (this as any).postBody = React.createRef();
       this.state = {
@@ -64,7 +67,7 @@ export default connect(
       return true;
     }
     public async renderPost(number = 0) {
-      const { postsStore, markPost, history, location, match } = this.props;
+      const { postsStore, storePosts, markPost, history, location, match } = this.props;
       if (number === 0) number = +match.params.number;
       let title, created_at, body;
 
@@ -72,10 +75,12 @@ export default connect(
         const res = await getPost(number);
         if (!res) {
           history.replace("/error");
-          return false;
+          return;
         } else {
           ({ title, created_at } = res);
           body = await markdownParser(res.body);
+          storePosts({ [number]: res });
+          markPost(number, body);
         }
       } else {
         const { $body } = postsStore[number];
@@ -108,14 +113,15 @@ export default connect(
           !!anchor && scrollToAnchor(anchor);
         }
 
+        const isHashRouter = this.props.location.pathname === window.location.hash.replace('#', '').replace(/\?.*/, '');
+
         postBody.querySelectorAll("a").forEach((a: HTMLAnchorElement) => {
           if (a.hostname === window.location.hostname) {
             if (!!a.hash) {
               a.addEventListener('click', e => {
                 const anchor = a.hash.replace('#', '');
 
-                // if HashRouter.
-                if (location.pathname === window.location.hash.replace('#', '').replace(/\?.*/, '')) {
+                if (isHashRouter) {
                   e.preventDefault();
                   history.push(`?${stringify({ anchor })}`);
                 }
@@ -123,9 +129,11 @@ export default connect(
                 scrollToAnchor(anchor);
               });
             } else if (!!/^\/\d+$/.exec(a.pathname)) {
+              const { pathname } = a;
+              a.href = `${isHashRouter ? '/#' : ''}/p/9`;
               a.addEventListener('click', e => {
                 e.preventDefault();
-                const postNumber = (/\d+$/.exec(a.pathname) as any)[0];
+                const postNumber = (/\d+$/.exec(pathname) as any)[0];
                 history.push(`/p/${(postNumber as string)}`);
               });
             }
